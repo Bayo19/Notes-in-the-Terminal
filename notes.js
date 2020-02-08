@@ -1,10 +1,17 @@
 const fs = require('fs')
 const chalk = require('chalk')
 
-let getNotes = (note) => {
-    return 'Your notes ...'
-}
 
+const newNote = chalk.rgb(34, 171, 220)
+const errorCol = chalk.rgb(255, 0, 0)
+const removed = chalk.rgb(58, 162, 84)
+const info = chalk.rgb(255, 255, 240)
+const titleCol = chalk.rgb(124, 216, 65)
+const bodyCol = chalk.rgb(239, 64, 175)
+const timeCol = chalk.rgb(250, 218, 94)
+
+
+// capitalise function to capitalise body of all entries when returned in list
 const bodycapitalized = (s) => {
     if (typeof s !== 'string') {
         return ''
@@ -29,10 +36,10 @@ const addNote = (title, body, time) => {
         })
 
         saveNotes(notes)
-        console.log(chalk.rgb(34, 171, 220)('new note added'))
+        console.log(newNote('new note added'))
 
     } else {
-        console.log(chalk.red('note title already exists'))
+        console.log(errorCol('note title already exists'))
     }
 }
 
@@ -45,9 +52,9 @@ const removeNote = (title) => {
 
     if (notes.length > notes2.length) {
         saveNotes(notes2)
-        console.log(chalk.rgb(58, 162, 84)(`${title} has been removed...`))
+        console.log(removed(`${title} has been removed...`))
     } else {
-        console.log(chalk.red('no note found'))
+        console.log(errorCol('no note found'))
 
     }
 
@@ -76,18 +83,18 @@ const loadNotes = () => {
 
 const clearNotes = () => {
     fs.writeFileSync('notes.json', [])
-    console.log(chalk.rgb(255, 255, 240)('The list has been cleared'))
+    console.log(info('The list has been cleared'))
 }
 
 const listNotes = () => {
     const notes = loadNotes()
-    console.log(chalk.rgb(255, 255, 240)('Your Notes'))
+    console.log(info('Your Notes'))
 
     notes.forEach((note) => {
-        console.log(chalk.rgb(124, 216, 65)(note.title.toUpperCase()))
-        console.log(chalk.rgb(239, 64, 175)(bodycapitalized(note.body)))
+        console.log(titleCol(note.title.toUpperCase()))
+        console.log(bodyCol(bodycapitalized(note.body)))
 
-        console.log(chalk.rgb(250, 218, 94)(note.time))
+        console.log(timeCol(`added on ${note.time}`))
     })
 
 
@@ -101,16 +108,17 @@ const readNote = (title) => {
 
 
     if (notetoRead) {
-        console.log(chalk.yellow(notetoRead.title.toUpperCase()))
-        console.log(bodycapitalized(notetoRead.body))
+        console.log(titleCol(notetoRead.title.toUpperCase()))
+        console.log(bodyCol(bodycapitalized(notetoRead.body)))
+        console.log(timeCol(`added on ${note.time}`))
+
     } else {
-        console.log(chalk.red(' this note does not exist yet'))
+        console.log(errorCol(' this note does not exist yet'))
     }
 }
 
 
 module.exports = {
-    getNotes: getNotes,
     addNote: addNote,
     removeNote: removeNote,
     listNotes: listNotes,
