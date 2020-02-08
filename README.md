@@ -15,7 +15,7 @@ mynotes remove --title="note name"
 
 
 
-###To see a list of all notes 
+### To see a list of all notes 
 
 mynotes list
 
