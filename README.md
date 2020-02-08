@@ -3,25 +3,25 @@ Node CRUD Notes App
 
 Usage
 
-To add a new note
+### To add a new note
 
 mynotes add --title="note name" --body="note contents"
 
 
 
-To remove a note
+### To remove a note
 
 mynotes remove --title="note name"
 
 
 
-To see a list of all notes 
+###To see a list of all notes 
 
 mynotes list
 
 
 
-To clear all notes in the list of notes
+### To clear all notes in the list of notes
 
 mynotes clearlist
 
