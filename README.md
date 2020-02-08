@@ -21,10 +21,10 @@ mynotes list
 
 
 
-to clear all notes in the list of notes
+To clear all notes in the list of notes
 
 mynotes clearlist
 
 
-to read a specific notes
+To read a specific notes
 mynotes read --title="name of note"
